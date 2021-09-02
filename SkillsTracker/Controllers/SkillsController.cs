@@ -17,51 +17,69 @@ namespace SkillsTracker.Controllers
         {
             string html = "<h1>" + "Skills Tracker" + "</h1>" +
                 "<h2>" + "Coding Skills To Learn:" + "</h2>" +
-                "<ol>" + "<li>" + "C#" + "</li>" + "</ol>" +
-                "<ol>" + "<li>" + "JavaScript" + "</li>" + "</ol>" +
-                "<ol>" + "<li>" + "Python" + "</li>" + "</ol>";
+                    "<ol>" +
+                        "<li>" + "C#" + "</li>" +
+                        "<li>" + "JavaScript" + "</li>" +
+                        "<li>" + "Python" + "</li>" +
+                    "</ol>";
             return Content(html, "text/html");
         }
 
         //GET: /skills/form
-        [HttpGet("form/")]
-        [HttpPost("form")]
+        [HttpGet]
+        [Route("/skills/form")]
         public IActionResult Form()
         {
             string html = "<form method='post' action='/skills/form'>" +
                 "<h2>Date:</h2>" +
-                "<input type='date' id='date' name='date of progress' value='mm/dd/yyyy'>" +
+                "<input type='date' id='date' name='date' value='mm/dd/yyyy'>" +
 
                 "<h2>C#:</h2>" +
-                "<select name = 'C# progress'>" +
+                "<select name = 'csharp'>" +
                     "<option value = ''> -Please Choose Your Level Of Expertise- </option>" +
-                    "<option value = 'easy'> Novice </option>" +
-                    "<option value = 'medium'> Intermediate </option>" +
-                    "<option value = 'hard'> Expert </option>" +
+                    "<option value = 'Novice'> Novice </option>" +
+                    "<option value = 'Intermediate'> Intermediate </option>" +
+                    "<option value = 'Expert'> Expert </option>" +
                 "</select>" +
 
                 "<h2>JavaScript:</h2>" +
-                "<select name = 'JS progress'>" +
+                "<select name = 'js'>" +
                     "<option value = ''> -Please Choose Your Level Of Expertise- </option>" +
-                    "<option value = 'easy'> Novice </option>" +
-                    "<option value = 'medium'> Intermediate </option>" +
-                    "<option value = 'hard'> Expert </option>" +
+                    "<option value = 'Novice'> Novice </option>" +
+                    "<option value = 'Intermediate'> Intermediate </option>" +
+                    "<option value = 'Expert'> Expert </option>" +
                 "</select>" +
 
                 "<h2>Python:</h2>" +
-                 "<select name = 'Python progress'>" +
+                 "<select name = 'python'>" +
                     "<option value = ''> -Please Choose Your Level Of Expertise- </option>" +
-                    "<option value = 'easy'> Novice </option>" +
-                    "<option value = 'medium'> Intermediate </option>" +
-                    "<option value = 'hard'> Expert </option>" +
+                    "<option value = 'Novice'> Novice </option>" +
+                    "<option value = 'Intermediate'> Intermediate </option>" +
+                    "<option value = 'Expert'> Expert </option>" +
                 "</select>" +
-
+                "<br></br>" +
                 "<input type='submit' value='Submit'/>" +
                 "</form>";
 
             return Content(html, "text/html");
 
         }
+
+        //POST: /skills/form
+        [HttpPost]
+        [Route("/skills/form")]
+        public IActionResult DisplayForm(string date, string csharp, string js, string python)
+        {
+            string html = $"<h1>{date}</h1>" +
+                            "<ol>" +
+                                $"<li>C#: {csharp}</li>" +
+                                $"<li>JavaScript: {js}</li>" +
+                                $"<li>Python: {python}</li>" +
+                            "</ol>";
+
+            return Content(html, "text/html");
+        }
+
 
     }
 }
